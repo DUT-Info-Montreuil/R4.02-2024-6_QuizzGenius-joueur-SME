@@ -1,0 +1,7 @@
+JoueurDto
+
+Dto; Bo
+
+Toutes les classes qui servent a définir un objet metier (DTO) ou les objets des sources de donnés (BO)
+Pas de BO pour les joueurs (à voir)
+On peut créer des sous packages dto et bo
