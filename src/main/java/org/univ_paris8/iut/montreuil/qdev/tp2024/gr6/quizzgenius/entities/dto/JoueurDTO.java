@@ -9,5 +9,5 @@ public class JoueurDTO {
     private ArrayList<String> centreInteret;
     private LangueDTO langue;
 
-    private StatistiqueDTO statistique;
+    private StatistiqueDTO statistiques;
 }
