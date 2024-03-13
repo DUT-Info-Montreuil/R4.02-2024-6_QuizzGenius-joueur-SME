@@ -10,4 +10,6 @@ public class JoueurDTO {
     private LangueDTO langue;
 
     private StatistiqueDTO statistiques;
+
+
 }
