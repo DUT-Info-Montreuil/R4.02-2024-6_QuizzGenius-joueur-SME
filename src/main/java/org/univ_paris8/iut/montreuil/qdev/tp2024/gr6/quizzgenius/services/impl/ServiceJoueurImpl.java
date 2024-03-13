@@ -25,7 +25,7 @@ public class ServiceJoueurImpl implements IServiceJoueur {
     }
 
     @Override
-    public JoueurDTO ajouterJoueur(String prenom, String pseudo, int annee, String centreInteret, LangueEnum langue) throws ErreurSaisiesException, PseudoExistantException {
+    public JoueurDTO ajouterJoueur(String prenom, String pseudo, int annee, ArrayList<String> centreInteret, LangueEnum langue) throws ErreurSaisiesException, PseudoExistantException {
         //JoueurDTO j = new JoueurDTO()
         return null;
     }
