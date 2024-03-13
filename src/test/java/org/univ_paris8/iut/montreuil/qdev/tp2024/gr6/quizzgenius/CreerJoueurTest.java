@@ -12,10 +12,10 @@ public class CreerJoueurTest {
     @Test
     public void testPseudoJoueur() throws ErreurSaisiesException, PseudoExistantException {
 
-       /* JoueurImplTestAddMock j = new JoueurImplTestAddMock();
-        JoueurDTO j2 = j.JoueurDTO("ali",null,2000,null,null,null);
+        JoueurImplTestAddMock j = new JoueurImplTestAddMock();
+        JoueurDTO j2 = j.ajouterJoueur("ali",null,2000,null,null);
 
-        assertEquals("ali", j2.getPseudo());*/
+        assertEquals("ali", j2.getPseudo());
 
     }
 
