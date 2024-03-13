@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class JoueurDTO {
     private String pseudo;
     private String prenom;
-    private int annee;
+    private int anneeNaissance;
     private ArrayList<String> centreInteret;
-    private LangueDTO langue;
+    private Langue langue;
 
-    private StatistiqueDTO statistique;
+    private StatistiqueDTO statistiques;
 }
