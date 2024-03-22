@@ -9,4 +9,6 @@ import java.util.ArrayList;
 public interface IServiceJoueur {
 
     public JoueurDTO ajouterJoueur(String pseudo, String prenom, int annee, ArrayList<String> centreInteret, LangueEnum langue) throws ErreurSaisiesException, PseudoExistantException;
+
+    public ArrayList<JoueurDTO> listerJoueurs() throws NullPointerException;
 }
