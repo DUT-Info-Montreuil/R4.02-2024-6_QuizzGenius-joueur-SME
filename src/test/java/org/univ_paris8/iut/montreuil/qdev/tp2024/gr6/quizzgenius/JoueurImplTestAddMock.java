@@ -8,18 +8,37 @@ import utiles.exceptions.PseudoExistantException;
 
 import java.util.ArrayList;
 
-    public class JoueurImplTestAddMock implements IServiceJoueur {
+public class JoueurImplTestAddMock implements IServiceJoueur {
 
-        private ArrayList<String> pseudosExistants = new ArrayList<>();
+    private ArrayList<String> pseudosExistants = new ArrayList<>();
 
-        @Override
-        public JoueurDTO ajouterJoueur(String pseudo, String prenom, int annee, ArrayList<String> centreInteret, LangueEnum langue) throws ErreurSaisiesException, PseudoExistantException {
-            if (pseudosExistants.contains(pseudo)) {
-                throw new PseudoExistantException("Le pseudo existe déjà.");
-            }
-            pseudosExistants.add(pseudo);
-            return new JoueurDTO("ali", "boudj", 2020, null,LangueEnum.Français, null);
+    @Override
+    public JoueurDTO ajouterJoueur(String pseudo, String prenom, int annee, ArrayList<String> centreInteret, LangueEnum langue) throws ErreurSaisiesException, PseudoExistantException {
+        if (pseudo == null || prenom == null || langue == null) {
+            throw new ErreurSaisiesException("Pseudo, prénom et langue ne peuvent pas être null.");
         }
+        if (pseudosExistants.contains(pseudo)) {
+            throw new PseudoExistantException("Le pseudo existe déjà.");
+        }
+        if (!prenom.matches("[a-zA-Z-]+")) {
+            throw new ErreurSaisiesException("Le prénom contient des caractères invalides.");
+        }
+        if (annee > 2024 || annee < 1900) {
+            throw new ErreurSaisiesException("L'année de naissance est invalide.");
+        }
+        if (annee <= 0) {
+            throw new ErreurSaisiesException("Année de naissance et ou langue ne peuvent pas être null ou non valides.");
+        }
+        if (centreInteret != null && !centreInteret.isEmpty()) {
+            for (String interet : centreInteret) {
+                if (interet.matches("^\\d+$")) {
+                    throw new ErreurSaisiesException("Les centres d'intérêt ne doivent pas être uniquement composés de chiffres.");
+                }
+            }
+        }
+        pseudosExistants.add(pseudo);
+        return new JoueurDTO(pseudo, prenom, annee, centreInteret, langue, null);
     }
+}
 
 
