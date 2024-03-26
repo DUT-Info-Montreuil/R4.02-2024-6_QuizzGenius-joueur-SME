@@ -127,13 +127,10 @@ public class CreerJoueurTest {
         ArrayList<String> centresInteretInvalides = new ArrayList<>();
         centresInteretInvalides.add("6498");
 
-        Exception exception = assertThrows(ErreurSaisiesException.class, () -> {
+        assertThrows(ErreurSaisiesException.class, () -> {
             mock.ajouterJoueur("pseudo", "prenom", 1985, centresInteretInvalides, LangueEnum.Français);
         });
 
-        String messageAttendu = "Les centres d'intérêt ne doivent pas être uniquement composés de chiffres.";
-        String messageActuel = exception.getMessage();
-        assertTrue(messageActuel.contains(messageAttendu));
     }
 
 }

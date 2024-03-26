@@ -5,7 +5,7 @@ import org.univ_paris8.iut.montreuil.qdev.tp2024.gr6.quizzgenius.services.interf
 import utiles.Enum.LangueEnum;
 import utiles.exceptions.ErreurSaisiesException;
 import utiles.exceptions.PseudoExistantException;
-import java.util.regex.Pattern;
+
 import java.util.ArrayList;
 
 public class ServiceJoueurImpl implements IServiceJoueur {
@@ -27,15 +27,15 @@ public class ServiceJoueurImpl implements IServiceJoueur {
     @Override
     public JoueurDTO ajouterJoueur(String pseudo, String prenom, int annee, ArrayList<String> centreInteret, LangueEnum langue) throws ErreurSaisiesException, PseudoExistantException {
 
-        if (pseudo == null || prenom == null || centreInteret == null || langue == null){
+        if (pseudo == null || prenom == null || centreInteret == null || langue == null) {
             throw new NullPointerException("L'un des paramètres est null");
         }
 
-            for (Character c : prenom.toCharArray()) {
-                if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
-                    throw new ErreurSaisiesException("Le prénom contient des caractères invalides.");
-                }
+        for (Character c : prenom.toCharArray()) {
+            if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
+                throw new ErreurSaisiesException("Le prénom contient des caractères invalides.");
             }
+        }
 
 
         for (String centreInter : centreInteret) {
@@ -55,9 +55,25 @@ public class ServiceJoueurImpl implements IServiceJoueur {
             }
         }
 
+        for (String centreInter : centreInteret) {
+            boolean estUnChiffre = true;
+
+            for (Character c : centreInter.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    estUnChiffre = false;
+                }
+            }
+
+            if (estUnChiffre) {
+                throw new ErreurSaisiesException("Erreur le centre d'interets ne peut pas être composé uniquement de chiffres");
+            }
+        }
+
 
         if (annee < 1924) {
             throw new ErreurSaisiesException("Erreur l'année de naissance doit être positive et supérieur à 1923");
+        } else if (annee > 2024) {
+            throw new ErreurSaisiesException("Erreur l'année de naissance doit être au maximum 2024");
         }
 
         JoueurDTO joueur = new JoueurDTO(pseudo, prenom, annee, centreInteret, langue, null);
@@ -70,9 +86,10 @@ public class ServiceJoueurImpl implements IServiceJoueur {
     }
 
     @Override
-    public ArrayList<JoueurDTO> listerJoueurs() throws NullPointerException {
-        return null;
+    public ArrayList<JoueurDTO> listerJoueurs() {
+        if (joueurs == null) {
+            throw new NullPointerException("Erreur la liste de joueurs ne peut pas être null");
+        } else
+            return joueurs;
     }
-
-
 }
