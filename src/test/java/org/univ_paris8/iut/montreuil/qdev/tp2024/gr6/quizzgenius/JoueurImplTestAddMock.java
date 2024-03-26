@@ -4,6 +4,7 @@ import org.univ_paris8.iut.montreuil.qdev.tp2024.gr6.quizzgenius.entities.dto.Jo
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr6.quizzgenius.services.interfaces.IServiceJoueur;
 import utiles.Enum.LangueEnum;
 import utiles.exceptions.ErreurSaisiesException;
+import utiles.exceptions.ListeJoueursVideException;
 import utiles.exceptions.PseudoExistantException;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 public class JoueurImplTestAddMock implements IServiceJoueur {
 
     private ArrayList<String> pseudosExistants = new ArrayList<>();
+    private ArrayList<JoueurDTO> listerJoueur = new ArrayList<>();
 
     @Override
     public JoueurDTO ajouterJoueur(String pseudo, String prenom, int annee, ArrayList<String> centreInteret, LangueEnum langue) throws ErreurSaisiesException, PseudoExistantException {
@@ -41,9 +43,13 @@ public class JoueurImplTestAddMock implements IServiceJoueur {
     }
 
     @Override
-    public ArrayList<JoueurDTO> listerJoueurs() throws NullPointerException {
-        throw new NullPointerException("La liste des joueurs est null.");
+    public ArrayList<JoueurDTO> listerJoueurs() throws ListeJoueursVideException {
+            if (listerJoueur.size() == 0) {
+                    throw new ListeJoueursVideException("Erreur la liste de joueur est vide");
+             }
+            return null;
     }
+
 }
 
 
