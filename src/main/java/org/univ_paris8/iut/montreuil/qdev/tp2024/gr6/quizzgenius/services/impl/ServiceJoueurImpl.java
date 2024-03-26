@@ -4,6 +4,7 @@ import org.univ_paris8.iut.montreuil.qdev.tp2024.gr6.quizzgenius.entities.dto.Jo
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr6.quizzgenius.services.interfaces.IServiceJoueur;
 import utiles.Enum.LangueEnum;
 import utiles.exceptions.ErreurSaisiesException;
+import utiles.exceptions.ListeJoueursVideException;
 import utiles.exceptions.PseudoExistantException;
 
 import java.util.ArrayList;
@@ -86,9 +87,9 @@ public class ServiceJoueurImpl implements IServiceJoueur {
     }
 
     @Override
-    public ArrayList<JoueurDTO> listerJoueurs() {
-        if (joueurs == null) {
-            throw new NullPointerException("Erreur la liste de joueurs ne peut pas être null");
+    public ArrayList<JoueurDTO> listerJoueurs() throws ListeJoueursVideException {
+        if (joueurs.size() == 0) {
+            throw new ListeJoueursVideException("Erreur la liste de joueur est vide");
         } else
             return joueurs;
     }

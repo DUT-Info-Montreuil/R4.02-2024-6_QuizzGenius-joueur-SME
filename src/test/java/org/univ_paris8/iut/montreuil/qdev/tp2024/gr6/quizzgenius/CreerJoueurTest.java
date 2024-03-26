@@ -6,6 +6,7 @@ import org.univ_paris8.iut.montreuil.qdev.tp2024.gr6.quizzgenius.services.impl.S
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr6.quizzgenius.services.interfaces.IServiceJoueur;
 import utiles.Enum.LangueEnum;
 import utiles.exceptions.ErreurSaisiesException;
+import utiles.exceptions.JoueurException;
 import utiles.exceptions.PseudoExistantException;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CreerJoueurTest {
 
     @Test
-    public void testPseudoPrenomJoueur() throws ErreurSaisiesException, PseudoExistantException {
+    public void testPseudoPrenomJoueur() throws JoueurException {
 
         IServiceJoueur j = new JoueurImplTestAddMock();
         ArrayList<String> centres = new ArrayList<>(Arrays.asList("Code", "Jeu"));
@@ -44,7 +45,7 @@ public class CreerJoueurTest {
     }
 
     @Test
-    public void testAjoutDeuxMemePseudo() throws ErreurSaisiesException, PseudoExistantException {
+    public void testAjoutDeuxMemePseudo() throws JoueurException {
         //JoueurImplTestAddMock j1 = new JoueurImplTestAddMock();
         IServiceJoueur j1 = ServiceJoueurImpl.getInstance();
         ArrayList<String> centres = new ArrayList<>(Arrays.asList("Code", "Jeu"));
@@ -70,14 +71,14 @@ public class CreerJoueurTest {
     }
 
     @Test
-    public void testAjoutJoueurSansCentreInteret() throws ErreurSaisiesException, PseudoExistantException {
+    public void testAjoutJoueurSansCentreInteret() throws JoueurException {
         //JoueurImplTestAddMock mock = new JoueurImplTestAddMock();
         IServiceJoueur mock = ServiceJoueurImpl.getInstance();
         JoueurDTO joueur = mock.ajouterJoueur("testSansInteret", "Test", 2000, new ArrayList<>(), LangueEnum.Français);
         assertTrue(joueur.getCentreInteret().isEmpty());
     }
     @Test
-    public void testAjoutJoueurAvecCentresInteret() throws ErreurSaisiesException, PseudoExistantException {
+    public void testAjoutJoueurAvecCentresInteret() throws JoueurException {
         //JoueurImplTestAddMock mock = new JoueurImplTestAddMock();
         IServiceJoueur mock = ServiceJoueurImpl.getInstance();
         ArrayList<String> centres = new ArrayList<>(Arrays.asList("Code", "Jeu"));
@@ -86,7 +87,7 @@ public class CreerJoueurTest {
         assertEquals(2, joueur.getCentreInteret().size());
     }
     @Test
-    public void testLangueJoueur() throws ErreurSaisiesException, PseudoExistantException {
+    public void testLangueJoueur() throws JoueurException {
         //JoueurImplTestAddMock mock = new JoueurImplTestAddMock();
         IServiceJoueur mock = ServiceJoueurImpl.getInstance();
         ArrayList<String> centres = new ArrayList<>(Arrays.asList("Code", "Jeu"));
@@ -113,7 +114,7 @@ public class CreerJoueurTest {
         });
     }
     @Test
-    public void testTypageCentreInteret() throws ErreurSaisiesException, PseudoExistantException {
+    public void testTypageCentreInteret() throws JoueurException {
         //JoueurImplTestAddMock mock = new JoueurImplTestAddMock();
         IServiceJoueur mock = ServiceJoueurImpl.getInstance();
         ArrayList<String> centresInteret = new ArrayList<>(Arrays.asList( "Jeu 123"));
