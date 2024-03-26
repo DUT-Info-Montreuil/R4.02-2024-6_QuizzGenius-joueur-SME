@@ -39,6 +39,11 @@ public class JoueurImplTestAddMock implements IServiceJoueur {
         pseudosExistants.add(pseudo);
         return new JoueurDTO(pseudo, prenom, annee, centreInteret, langue, null);
     }
+
+    @Override
+    public ArrayList<JoueurDTO> listerJoueurs() throws NullPointerException {
+        throw new NullPointerException("La liste des joueurs est null.");
+    }
 }
 
 
